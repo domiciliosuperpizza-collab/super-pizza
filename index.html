@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Pizza - Pedidos Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header con Logo -->
+        <header class="header">
+            <img src="https://www.genspark.ai/api/files/s/LEgSFzLq" alt="Super Pizza Logo" class="logo">
+            <h1>¡Haz tu pedido!</h1>
+            <p class="subtitle">Selecciona tus productos favoritos</p>
+        </header>
+
+        <!-- Módulo 1: Datos del Cliente -->
+        <section class="module module-customer">
+            <h2><i class="fas fa-user"></i> Datos del Cliente</h2>
+            <div class="form-group">
+                <label for="customerName">Nombre <span class="required">*</span></label>
+                <input type="text" id="customerName" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="form-group">
+                <label for="customerAddress">Dirección de envío <span class="required">*</span></label>
+                <input type="text" id="customerAddress" placeholder="Calle, número, barrio" required>
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">Número celular <span class="required">*</span></label>
+                <input type="tel" id="customerPhone" placeholder="Ej: 3001234567" required>
+            </div>
+            <div class="form-group">
+                <label for="deliveryOption">Tipo de entrega <span class="required">*</span></label>
+                <select id="deliveryOption">
+                    <option value="domicilio">Domicilio ($4.000)</option>
+                    <option value="recoge">Recoge en tienda ($0)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="selectedStore">Punto de venta <span class="required">*</span></label>
+                <select id="selectedStore">
+                    <option value="madrid">Madrid</option>
+                    <option value="centro">Centro</option>
+                    <option value="santana">Santana</option>
+                    <option value="villanueva">Villa Nueva</option>
+                    <option value="funza">Funza</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="customerObservations">Observaciones (opcional)</label>
+                <textarea id="customerObservations" rows="3" placeholder="Ej: Sin cebolla, entregar en puerta de rejas..."></textarea>
+            </div>
+        </section>
+
+        <!-- Módulo 2: Menú con Pestañas -->
+        <section class="module module-menu">
+            <h2><i class="fas fa-pizza-slice"></i> Nuestro Menú</h2>
+            
+            <!-- Pestañas -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="pizzas"><i class="fas fa-pizza-slice"></i> Pizzas</button>
+                <button class="tab-btn" data-tab="jugos"><i class="fas fa-glass-whiskey"></i> Jugos</button>
+                <button class="tab-btn" data-tab="panzerotti"><i class="fas fa-bread-slice"></i> Panzerotti</button>
+                <button class="tab-btn" data-tab="hamburguesas"><i class="fas fa-hamburger"></i> Hamburguesas</button>
+                <button class="tab-btn" data-tab="platos"><i class="fas fa-utensils"></i> Platos</button>
+                <button class="tab-btn" data-tab="perros"><i class="fas fa-hotdog"></i> Perros</button>
+                <button class="tab-btn" data-tab="combos"><i class="fas fa-box"></i> Combos</button>
+                <button class="tab-btn" data-tab="bebidas"><i class="fas fa-glass-martini"></i> Bebidas</button>
+            </div>
+
+            <!-- Contenido de Pizzas -->
+            <div class="tab-content active" id="pizzas">
+                <div class="menu-section">
+                    <h3>Pizzas</h3>
+                    <div class="pizza-selector">
+                        <div class="form-group">
+                            <label>Tamaño</label>
+                            <select id="pizzaSize">
+                                <option value="">-- Selecciona tamaño --</option>
+                                <option value="porcion" data-price="10000" data-maxsabores="1">Porción - $10.000</option>
+                                <option value="personal" data-price="25000" data-maxsabores="2">Personal (22×22 cm) - $25.000 (máx. 2 sabores)</option>
+                                <option value="mediana" data-price="52000" data-maxsabores="3">Mediana (35×35 cm) - $52.000 (máx. 3 sabores)</option>
+                                <option value="familiar" data-price="100000" data-maxsabores="3">Familiar (50×50 cm) - $100.000 (máx. 3 sabores)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="saboresContainer" style="display:none;">
+                            <label>Sabores <span id="maxSaboresText"></span></label>
+                            <div class="sabores-list">
+                                <label><input type="checkbox" class="sabor-checkbox" value="Española"> Española</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Ranchera"> Ranchera</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Criolla"> Criolla</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Mexicana"> Mexicana</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Pollo con champiñones"> Pollo con champiñones</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Napolitana"> Napolitana</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Salami con champiñones"> Salami con champiñones</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Carnes"> Carnes</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Hawaiana"> Hawaiana</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Tropical"> Tropical</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Queso con bocadillo"> Queso con bocadillo</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Fantasía"> Fantasía</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Pollo BBQ"> Pollo BBQ</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Colombianita"> Colombianita</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Peperoni"> Peperoni</label>
+                                <label><input type="checkbox" class="sabor-checkbox" value="Parrillera"> Parrillera</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-add" id="addPizzaBtn" style="display:none;">
+                            <i class="fas fa-plus-circle"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido de Jugos -->
+            <div class="tab-content" id="jugos">
+                <div class="menu-section">
+                    <h3>Jugos Naturales</h3>
+                    <div class="juice-selector">
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <select id="juiceType">
+                                <option value="">-- Selecciona tipo --</option>
+                                <option value="agua" data-price="8000">En agua - $8.000</option>
+                                <option value="leche" data-price="9000">En leche - $9.000</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="juiceFlavorsContainer" style="display:none;">
+                            <label>Sabor</label>
+                            <select id="juiceFlavor">
+                                <option value="">-- Selecciona sabor --</option>
+                                <option value="Maracuyá">Maracuyá</option>
+                                <option value="Lulo">Lulo</option>
+                                <option value="Mora">Mora</option>
+                                <option value="Fresa">Fresa</option>
+                                <option value="Frutos rojos">Frutos rojos</option>
+                                <option value="Frutos amarillos">Frutos amarillos</option>
+                                <option value="Guanábana">Guanábana</option>
+                                <option value="Mango">Mango</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-add" id="addJuiceBtn" style="display:none;">
+                            <i class="fas fa-plus-circle"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido de Panzerotti -->
+            <div class="tab-content" id="panzerotti">
+                <div class="menu-section">
+                    <h3>Panzerotti - $10.000 c/u</h3>
+                    <div class="menu-items">
+                        <div class="menu-item" data-item="Panzerotti De la casa" data-price="10000">
+                            <span>De la casa</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Panzerotti Pollo con champiñones" data-price="10000">
+                            <span>Pollo con champiñones</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Panzerotti Ranchero" data-price="10000">
+                            <span>Ranchero</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Panzerotti Hawaiano" data-price="10000">
+                            <span>Hawaiano</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido de Hamburguesas -->
+            <div class="tab-content" id="hamburguesas">
+                <div class="menu-section">
+                    <h3>Hamburguesas</h3>
+                    <div class="menu-items">
+                        <div class="menu-item" data-item="Hamburguesa Ranchera" data-price="25000">
+                            <span>Ranchera - $25.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Hamburguesa Pollo apanado sencilla" data-price="22000">
+                            <span>Pollo apanado sencilla - $22.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Hamburguesa Pollo apanado especial" data-price="23000">
+                            <span>Pollo apanado especial - $23.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Hamburguesa Croki pollo" data-price="22000">
+                            <span>Croki pollo - $22.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Hamburguesa Especial" data-price="22000">
+                            <span>Especial - $22.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Hamburguesa Artesanal" data-price="21000">
+                            <span>Artesanal - $21.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Hamburguesa Doble carne artesanal" data-price="28000">
+                            <span>Doble carne artesanal - $28.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Hamburguesa Doble carne especial" data-price="29000">
+                            <span>Doble carne especial - $29.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Hamburguesa Doble carne apanada especial" data-price="30000">
+                            <span>Doble carne apanada especial - $30.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido de Platos -->
+            <div class="tab-content" id="platos">
+                <div class="menu-section">
+                    <h3>Platos a la Carta</h3>
+                    <div class="menu-items platos-list">
+                        <div class="menu-item-detailed" data-item="MAZORCADA" data-price="35000">
+                            <div class="item-info">
+                                <h4>MAZORCADA - $35.000</h4>
+                                <p>Mazorca desgranada, carne desmechada, champiñones, tocineta, trozos de cábano, queso gratinado, huevo de codorniz y papa a la francesa</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="LASAGNA" data-price="27000">
+                            <div class="item-info">
+                                <h4>LASAGNA - $27.000</h4>
+                                <p>Mixta con pollo, queso, salsa boloñesa, jamón y champiñones. Acompañada con dos tajadas de pan</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="PECHUGA GRATINADA" data-price="35000">
+                            <div class="item-info">
+                                <h4>PECHUGA GRATINADA - $35.000</h4>
+                                <p>Ensalada, papa a la francesa, arepa y huevo de codorniz</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="PECHUGA A LA PLANCHA" data-price="32000">
+                            <div class="item-info">
+                                <h4>PECHUGA A LA PLANCHA - $32.000</h4>
+                                <p>Ensalada, papa a la francesa, huevo de codorniz y arepa gratinada</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="COSTILLA DE CERDO" data-price="35000">
+                            <div class="item-info">
+                                <h4>COSTILLA DE CERDO - $35.000</h4>
+                                <p>En salsa BBQ, papa criolla, ensalada y arepa gratinada</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="CHURRASCO" data-price="44000">
+                            <div class="item-info">
+                                <h4>CHURRASCO - $44.000</h4>
+                                <p>350gr, papas a la francesa, arepa gratinada y ensalada</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="PATACÓN GRATINADO" data-price="20000">
+                            <div class="item-info">
+                                <h4>PATACÓN GRATINADO - $20.000</h4>
+                                <p>Papas a la francesa, queso y huevo de codorniz</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="PATACÓN ESPECIAL" data-price="36000">
+                            <div class="item-info">
+                                <h4>PATACÓN ESPECIAL - $36.000</h4>
+                                <p>Mazorca desgranada, carne desmechada, champiñones, tocineta, trozos de cábano, queso gratinado, huevo de codorniz y papa a la francesa</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="SALCHIPAPA" data-price="23000">
+                            <div class="item-info">
+                                <h4>SALCHIPAPA - $23.000</h4>
+                                <p>Salchicha americana, papa a la francesa, queso gratinado, tocineta, mazorca, butifarra y huevo de codorniz</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="SUPER SALCHIPAPA" data-price="58000">
+                            <div class="item-info">
+                                <h4>SUPER SALCHIPAPA - $58.000</h4>
+                                <p>Salchicha americana, papa a la francesa, pollo, tocineta, mazorca, butifarra, huevo de codorniz, tajaditas de plátano, carne desmechada y queso gratinado</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="SUIZO" data-price="19000">
+                            <div class="item-info">
+                                <h4>SUIZO - $19.000</h4>
+                                <p>Salchicha suiza, papa a la francesa, queso gratinado, lechuga, tomate y huevo de codorniz</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido de Perros -->
+            <div class="tab-content" id="perros">
+                <div class="menu-section">
+                    <h3>Perros</h3>
+                    <div class="menu-items">
+                        <div class="menu-item-detailed" data-item="PERRO RANCHERO" data-price="24000">
+                            <div class="item-info">
+                                <h4>RANCHERO - $24.000</h4>
+                                <p>Salchicha americana, pan artesanal, tocineta, lechuga, tomate, cebolla, salsa ranchera con trozos de chorizo, mazorca y queso parmesano</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item-detailed" data-item="PERRO AMERICANO" data-price="17000">
+                            <div class="item-info">
+                                <h4>AMERICANO - $17.000</h4>
+                                <p>Salchicha americana, pan artesanal, papa cabello de ángel, salsa, queso, tocineta y huevo de codorniz</p>
+                            </div>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido de Combos -->
+            <div class="tab-content" id="combos">
+                <div class="menu-section">
+                    <h3>Combos (incluyen bebida)</h3>
+                    <div class="menu-items">
+                        <div class="menu-item" data-item="Combo Perro americano" data-price="28000">
+                            <span>Perro americano - $28.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Combo Perro ranchero" data-price="35000">
+                            <span>Perro ranchero - $35.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Combo Hamburguesa artesanal" data-price="32000">
+                            <span>Hamburguesa artesanal - $32.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Combo Hamburguesa especial" data-price="33000">
+                            <span>Hamburguesa especial - $33.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Combo Hamburguesa apanada sencilla" data-price="33000">
+                            <span>Hamburguesa apanada sencilla - $33.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Combo Hamburguesa apanada especial" data-price="34000">
+                            <span>Hamburguesa apanada especial - $34.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Combo Hamburguesa ranchera" data-price="36000">
+                            <span>Hamburguesa ranchera - $36.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido de Bebidas -->
+            <div class="tab-content" id="bebidas">
+                <div class="menu-section">
+                    <h3>Bebidas</h3>
+                    <div class="menu-items bebidas-list">
+                        <div class="menu-item" data-item="Agua mineral/con gas 600ml" data-price="5000">
+                            <span>Agua mineral/con gas 600ml - $5.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Agua H2O saborizada 600ml" data-price="6000">
+                            <span>Agua H2O saborizada 600ml - $6.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Gaseosa flexi 400ml" data-price="5000">
+                            <span>Gaseosa flexi 400ml - $5.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Gaseosa 1.5lt" data-price="10500">
+                            <span>Gaseosa 1.5lt - $10.500</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Gaseosa 350ml" data-price="4500">
+                            <span>Gaseosa 350ml - $4.500</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Cerveza" data-price="6500">
+                            <span>Cerveza - $6.500</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Jugo Hit 500ml" data-price="5000">
+                            <span>Jugo Hit 500ml - $5.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Limonada natural" data-price="8000">
+                            <span>Limonada natural - $8.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Limonada de coco" data-price="10000">
+                            <span>Limonada de coco - $10.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Limonada hierbabuena" data-price="9000">
+                            <span>Limonada hierbabuena - $9.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Limonada cerezada" data-price="9000">
+                            <span>Limonada cerezada - $9.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                        <div class="menu-item" data-item="Limonada mango biche" data-price="9000">
+                            <span>Limonada mango biche - $9.000</span>
+                            <button class="btn btn-add-simple"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrito -->
+        <section class="module module-cart">
+            <h2><i class="fas fa-shopping-cart"></i> Tu Pedido</h2>
+            <div id="cartEmpty" class="cart-empty">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Tu carrito está vacío</p>
+                <p class="text-small">Agrega productos desde el menú</p>
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+            <div id="cartSummary" class="cart-summary" style="display:none;">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotalAmount">$0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Domicilio:</span>
+                    <span id="deliveryAmount">$4.000</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>TOTAL:</span>
+                    <span id="totalAmount">$4.000</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Módulo de Pago -->
+        <section class="module module-payment">
+            <h2><i class="fas fa-credit-card"></i> Forma de Pago</h2>
+            <div class="form-group">
+                <label>¿Cómo vas a pagar? <span class="required">*</span></label>
+                <select id="paymentMethod">
+                    <option value="">-- Selecciona --</option>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="nequi">Nequi</option>
+                    <option value="daviplata">Daviplata</option>
+                </select>
+            </div>
+            
+            <!-- Botones de Pago Digital -->
+            <div id="digitalPaymentButtons" style="display:none;">
+                <div class="payment-info">
+                    <p><i class="fas fa-info-circle"></i> Realiza el pago y luego ingresa la referencia</p>
+                </div>
+                <div class="payment-buttons">
+                    <button id="nequiPayBtn" class="btn btn-nequi" style="display:none;">
+                        <i class="fas fa-mobile-alt"></i> Pagar con Nequi
+                        <span class="phone-number">+57 320 203 6430</span>
+                    </button>
+                    <button id="daviplataPayBtn" class="btn btn-daviplata" style="display:none;">
+                        <i class="fas fa-mobile-alt"></i> Pagar con Daviplata
+                        <span class="phone-number">+57 311 210 0765</span>
+                    </button>
+                </div>
+                
+                <div class="form-group" id="referenceContainer" style="display:none;">
+                    <label for="paymentReference">Referencia o últimos 4 dígitos <span class="required">*</span></label>
+                    <input type="text" id="paymentReference" placeholder="Ej: 1234" maxlength="20">
+                </div>
+                
+                <button id="confirmPaymentBtn" class="btn btn-confirm-payment" style="display:none;">
+                    <i class="fas fa-check-circle"></i> Confirmé el pago
+                </button>
+            </div>
+        </section>
+
+        <!-- Calificación del Servicio -->
+        <section class="module module-rating">
+            <h2><i class="fas fa-star"></i> Califica nuestro servicio</h2>
+            <div class="rating-stars">
+                <i class="far fa-star" data-rating="1"></i>
+                <i class="far fa-star" data-rating="2"></i>
+                <i class="far fa-star" data-rating="3"></i>
+                <i class="far fa-star" data-rating="4"></i>
+                <i class="far fa-star" data-rating="5"></i>
+            </div>
+            <div class="form-group">
+                <label for="ratingComment">Comentario (opcional)</label>
+                <textarea id="ratingComment" rows="2" placeholder="Cuéntanos tu experiencia..."></textarea>
+            </div>
+        </section>
+
+        <!-- Desglose Final (oculto inicialmente) -->
+        <div id="finalBreakdown" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h3><i class="fas fa-receipt"></i> Resumen de tu Pedido</h3>
+                <div id="breakdownDetails"></div>
+                <button id="closeBreakdownBtn" class="btn btn-secondary">Cerrar</button>
+            </div>
+        </div>
+
+        <!-- Botón Enviar Pedido -->
+        <div class="action-buttons">
+            <button id="sendOrderBtn" class="btn btn-primary btn-large" disabled>
+                <i class="fas fa-paper-plane"></i> Enviar Pedido por WhatsApp
+            </button>
+        </div>
+
+        <!-- Botones de Puntos de Venta -->
+        <section class="module module-stores">
+            <h3><i class="fas fa-map-marker-alt"></i> Contáctanos Directamente</h3>
+            <div class="store-buttons">
+                <a href="https://wa.me/573202569597" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Madrid
+                </a>
+                <a href="https://wa.me/573133597806" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Centro
+                </a>
+                <a href="https://wa.me/573123642016" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Santana
+                </a>
+                <a href="https://wa.me/573213101242" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Villa Nueva
+                </a>
+                <a href="https://wa.me/573209355962" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Funza
+                </a>
+            </div>
+        </section>
+
+        <!-- Módulo Fidelización -->
+        <section class="module module-loyalty">
+            <h2><i class="fas fa-gift"></i> Programa de Fidelización</h2>
+            <div class="loyalty-info">
+                <p class="loyalty-banner">🎉 ¡Acumula 12 domicilios y gana un premio! 🎉</p>
+                <div id="loyaltyProgress" class="loyalty-progress" style="display:none;">
+                    <p>Llevas <strong id="currentDeliveries">0</strong> de 12 domicilios</p>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+                <div id="loyaltySuccess" class="loyalty-success" style="display:none;">
+                    <i class="fas fa-trophy"></i>
+                    <h3>¡Felicitaciones!</h3>
+                    <p>Has completado 12 domicilios y ganaste tu premio</p>
+                    <p class="text-small">Pronto nos comunicaremos contigo</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Super Pizza © 2026 - ¡La mejor pizza de la ciudad!</p>
+            <p class="text-small">Pedidos y consultas disponibles en todos nuestros puntos de venta</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
