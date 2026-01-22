@@ -3,7 +3,7 @@
 // ========================================
 
 // Configuration
-const APPS_SCRIPT_URL = 'TU_URL_DE_APPS_SCRIPT_AQUI'; // Reemplazar después de desplegar Apps Script
+const APPS_SCRIPT_URL = 'TU_URL_DE_APPS_SCRIPT_AQUI'; https://script.google.com/macros/s/AKfycbyE7PJz91fB8VnWmNzZZkzreAxwu_cITOreBH6ZFwD8fjIFtq5hbisCKVSL7JjJ4xM96g/exec
 
 const WHATSAPP_NUMBERS = {
     madrid: '573202569597',
